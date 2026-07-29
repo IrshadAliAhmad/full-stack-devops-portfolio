@@ -1,0 +1,30 @@
+# Local dependencies (Docker container ise khud andar install karega)
+node_modules
+npm-debug.log
+
+# Local build outputs (Docker build stage khud 'dist' banayega)
+dist
+build
+
+# Version control system files
+.git
+.gitignore
+
+# Environment configurations & secrets
+.env
+.env.local
+.env.production
+
+# IDEs and OS system trash
+.vscode
+.idea
+.DS_Store
+*.log
+Thumbs.db
+Dockerfile
+.dockerignore
+
+
+
+# Documentation
+README.md
