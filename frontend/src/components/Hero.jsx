@@ -65,7 +65,7 @@ function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[100vh] flex items-center pt-20  overflow-hidden bg-gradient-to-b from-slate-50 via-white to-white dark:from-[#0d0e12] dark:via-[#0f111a] dark:to-[#090a0f]"
+      className="relative min-h-[100vh] flex items-center pt-20 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-white dark:from-[#0d0e12] dark:via-[#0f111a] dark:to-[#090a0f]"
     >
       {/* Background soft glowing lights */}
       <div className="absolute top-[-50px] left-[-50px] md:top-[-100px] md:left-[-100px] w-[200px] sm:w-[300px] h-[200px] sm:h-[300px] bg-blue-500/10 dark:bg-blue-600/5 blur-[80px] sm:blur-[120px] pointer-events-none rounded-full" />
@@ -115,7 +115,7 @@ function Hero() {
                         style={{
                           transform: `rotate(${angle}deg) translate(var(--orbit-radius)) rotate(${-angle}deg)`,
                         }}
-                      >         
+                      >    
                         {/* Counter-rotation to keep individual icons upright */}
                         <motion.div
                           animate={{ rotate: -360 }}
@@ -134,8 +134,8 @@ function Hero() {
                   })}
                 </motion.div>
 
-                {/* Main center profile photo holder */}
-                <div className="relative z-10 w-44 h-44 sm:w-56 sm:h-56 md:w-60 md:h-60 rounded-full overflow-hidden border-4 border-white dark:border-zinc-800 shadow-xl bg-slate-100 dark:bg-zinc-800">
+                {/* Main center profile photo holder - Background color classes removed for transparency */}
+                <div className="relative z-10 w-44 h-44 sm:w-56 sm:h-56 md:w-60 md:h-60 rounded-full overflow-hidden border-4 border-white dark:border-zinc-800 shadow-xl bg-transparent">
                   <img
                     src="/ahmad.png"
                     alt="Irshad Ahmad AWS DevOps Engineer"
@@ -279,3 +279,8 @@ function Hero() {
 }
 
 export default Hero;
+
+
+
+
+
