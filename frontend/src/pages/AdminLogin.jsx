@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import axios from "axios";
+import axiosInstance from "../api/axiosInstance";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
@@ -20,12 +20,13 @@ export default function AdminLogin() {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:5000/api/admin/login", {
+      const res = await axiosInstance.post("/admin/login", {
         email,
         password,
       });
 
       localStorage.setItem("token", res.data.token);
+
       navigate("/admin/dashboard");
     } catch (err) {
       console.error(err);
