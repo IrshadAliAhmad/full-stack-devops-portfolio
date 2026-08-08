@@ -13,7 +13,7 @@ function Footer() {
   };
 
   return (
-    <footer 
+    <footer
       // Reduced top/bottom padding to make layout tight and close to the Contact box
       className="relative bg-[#090a0f] text-zinc-400 py-8 border-t border-slate-200/10 dark:border-zinc-800/40 overflow-hidden transition-colors duration-500"
     >
@@ -24,7 +24,6 @@ function Footer() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-80 h-40 bg-purple-500/5 dark:bg-purple-600/5 blur-[90px] rounded-full pointer-events-none" />
 
       <div className="max-w-6xl mx-auto px-6 sm:px-10 flex flex-col items-center justify-between gap-6 sm:flex-row relative z-10">
-        
         {/* Left Area: Developer brand name credentials info */}
         <div className="text-center sm:text-left">
           <p className="text-sm font-bold text-zinc-800 dark:text-zinc-100 tracking-wide transition-colors duration-300">
@@ -37,7 +36,6 @@ function Footer() {
 
         {/* Center Area: Social network anchor hyperlinks buttons group */}
         <div className="flex items-center gap-4">
-          
           {/* GitHub Profile URL Badge Link */}
           <motion.a
             href="https://github.com/IrshadAliAhmad"
@@ -79,17 +77,18 @@ function Footer() {
           </p>
 
           {/* Interactive UI Action Button element scrolling view frame up */}
+          
           <motion.button
             onClick={scrollToTop}
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200 bg-slate-100/50 dark:bg-zinc-900/30 hover:bg-slate-200/60 dark:hover:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 px-2.5 py-1 rounded-lg mt-1 transition-colors duration-200"
+            className="group flex items-center gap-1.5 text-[10px] uppercase font-bold tracking-widest text-black bg-gradient-to-r from-blue-500 via-indigo-500 to-pink-500 hover:from-blue-600 hover:via-indigo-600 hover:to-pink-600 px-3 py-1.5 rounded-xl mt-1 shadow-md hover:shadow-lg hover:shadow-indigo-500/25 transition-all duration-300"
           >
             <span>Top</span>
-            <FaChevronUp className="text-[8px]" />
+            <FaChevronUp className="text-[8px] transition-transform duration-300 group-hover:-translate-y-0.5" />
           </motion.button>
+
         </div>
-        
       </div>
     </footer>
   );
