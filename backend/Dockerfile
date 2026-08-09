@@ -7,7 +7,7 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm ci
+RUN npm install
 
 COPY . .
 
@@ -29,7 +29,6 @@ ENV NODE_ENV=production
 
 COPY --from=builder /app ./
 
-# Security: run as non-root user
 USER node
 
 EXPOSE 5000
