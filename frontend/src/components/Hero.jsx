@@ -65,7 +65,7 @@ function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-[100vh] flex items-center pt-20 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-white dark:from-[#0d0e12] dark:via-[#0f111a] dark:to-[#090a0f]"
+      className="relative min-h-[100vh] flex items-center lg:pt-20 overflow-hidden bg-gradient-to-b from-slate-50 via-white to-white dark:from-[#0d0e12] dark:via-[#0f111a] dark:to-[#090a0f]"
     >
       {/* Background soft glowing lights */}
       <div className="absolute top-[-50px] left-[-50px] md:top-[-100px] md:left-[-100px] w-[200px] sm:w-[300px] h-[200px] sm:h-[300px] bg-blue-500/10 dark:bg-blue-600/5 blur-[80px] sm:blur-[120px] pointer-events-none rounded-full" />

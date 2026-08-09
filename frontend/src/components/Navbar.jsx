@@ -16,7 +16,7 @@ function Navbar({ darkMode, setDarkMode }) {
     { name: "Contact", id: "contact" },
   ];
 
-  // Effect to handle window scroll events
+  // Effect to handle window scroll events efficiently
   useEffect(() => {
     const handleScroll = () => {
       // Toggle navbar background state based on scroll position
@@ -38,37 +38,52 @@ function Navbar({ darkMode, setDarkMode }) {
       });
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll(); // Trigger immediately on mount
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [navLinks]);
+  }, []);
 
   return (
     <>
       {/* Main Navbar Container */}
       <nav
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
           scrolled
-            ? "bg-white/70 dark:bg-[#090a0f]/70 backdrop-blur-md shadow-sm border-b border-slate-200/50 dark:border-zinc-800/40 h-16"
+            ? "bg-white/80 dark:bg-[#090a0f]/80 backdrop-blur-md shadow-sm border-b border-slate-200/50 dark:border-zinc-800/40 h-16"
             : "bg-transparent h-20"
         } flex items-center`}
       >
         {/* Responsive Content Wrapper */}
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 w-full">
-          <div className="flex items-center justify-between w-full">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 w-full">
+          <div className="flex items-center justify-between w-full">      
             
             {/* Logo Section */}
-            <motion.h1 
-              whileHover={{ scale: 1.05 }}
-              className="text-2xl sm:text-3xl font-black bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent cursor-pointer tracking-wider shrink-0"
+            <motion.div 
+              className="cursor-pointer shrink-0 flex items-center"
             >
-              I A
-            </motion.h1>
+              <a href="#home" className="focus:outline-none">
+                <motion.img 
+                  src="/logo.png" 
+                  alt="Logo" 
+                  className="h-9 sm:h-10 w-auto object-contain will-change-transform"
+                  // Continuous Rotation Animation with hardware acceleration support
+                  animate={{ 
+                    rotateY: [0, 360] 
+                  }}
+                  transition={{ 
+                    duration: 10, 
+                    repeat: Infinity, 
+                    ease: "linear",
+                    repeatType: "loop"
+                  }}
+                  whileHover={{ scale: 1.15, transition: { duration: 0.2 } }}
+                />
+              </a>
+            </motion.div>
 
             {/* Desktop Menu and Action Controls */}
-            <div className="flex items-center gap-4 md:gap-6 lg:gap-8">
-
+            <div className="flex items-center gap-3 sm:gap-4 md:gap-6 lg:gap-8">
               {/* Navigation links visible only on desktop monitors */}
               <ul className="hidden md:flex items-center gap-5 lg:gap-8 font-semibold tracking-wide">
                 {navLinks.map((link) => (
@@ -88,7 +103,11 @@ function Navbar({ darkMode, setDarkMode }) {
                         <motion.span
                           layoutId="activeUnderline"
                           className="absolute left-0 bottom-0 w-full h-0.5 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full"
-                          transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 380,
+                            damping: 30,
+                          }}
                         />
                       )}
                     </a>
@@ -97,30 +116,33 @@ function Navbar({ darkMode, setDarkMode }) {
               </ul>
 
               {/* Utility buttons container */}
-              <div className="flex items-center gap-3 sm:gap-4 shrink-0">
-                
+              <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                 {/* Dark Mode Theme Switcher */}
                 <motion.button
-                  whileHover={{ scale: 1.15, rotate: 15 }}
+                  whileHover={{ scale: 1.1, rotate: 15 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setDarkMode(!darkMode)}
-                  className="text-lg sm:text-xl p-2 rounded-xl bg-slate-50 dark:bg-zinc-900 text-yellow-500 dark:text-zinc-400 shadow-sm border border-slate-200 dark:border-zinc-800/60 cursor-pointer flex items-center justify-center backdrop-blur-sm"
+                  aria-label="Toggle Dark Mode"
+                  className="text-lg sm:text-xl p-2 rounded-xl bg-slate-100 dark:bg-zinc-900 text-yellow-500 dark:text-zinc-400 shadow-sm border border-slate-200 dark:border-zinc-800/60 cursor-pointer flex items-center justify-center backdrop-blur-sm"
                 >
-                  {darkMode ? <FaSun className="text-amber-400" /> : <FaMoon className="text-blue-600" />}
+                  {darkMode ? (
+                    <FaSun className="text-amber-400" />
+                  ) : (
+                    <FaMoon className="text-blue-600" />
+                  )}
                 </motion.button>
 
                 {/* Hamburger icon trigger for small screen devices */}
                 <motion.button
-                  whileHover={{ scale: 1.1 }}
+                  whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.9 }}
-                  className="md:hidden text-2xl text-slate-700 dark:text-zinc-400 cursor-pointer flex items-center justify-center ml-1"
+                  aria-label="Open Menu"
+                  className="md:hidden text-2xl text-slate-700 dark:text-zinc-400 cursor-pointer flex items-center justify-center p-1"
                   onClick={() => setMenuOpen(true)}
                 >
                   <FaBars />
                 </motion.button>
-
               </div>
-              
             </div>
           </div>
         </div>
@@ -135,8 +157,9 @@ function Navbar({ darkMode, setDarkMode }) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={() => setMenuOpen(false)}
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 md:hidden"
+              className="fixed inset-0 bg-black/50 backdrop-blur-xs z-40 md:hidden"
             />
 
             {/* Sliding navigation tray container */}
@@ -144,16 +167,19 @@ function Navbar({ darkMode, setDarkMode }) {
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-              className="fixed top-0 right-0 h-screen w-full max-w-[280px] bg-white dark:bg-[#0c0e17] border-l border-slate-200 dark:border-zinc-800/60 shadow-2xl z-50 md:hidden flex flex-col"
+              transition={{ type: "spring", damping: 25, stiffness: 250 }}
+              className="fixed top-0 right-0 h-full w-full max-w-[280px] bg-white dark:bg-[#0c0e17] border-l border-slate-200 dark:border-zinc-800/60 shadow-2xl z-50 md:hidden flex flex-col"
             >
               {/* Drawer layout upper block */}
               <div className="flex items-center justify-between px-6 h-16 sm:h-20 border-b border-slate-100 dark:border-zinc-800/60 shrink-0">
-                <h2 className="text-xl font-black bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                  Navigation
-                </h2>
+                <img
+                  src="/logo.png"
+                  alt="Logo"
+                  className="h-8 w-auto object-contain"
+                />
                 <motion.button
                   whileTap={{ scale: 0.9 }}
+                  aria-label="Close Menu"
                   onClick={() => setMenuOpen(false)}
                   className="text-2xl text-slate-500 dark:text-zinc-400 p-1 cursor-pointer"
                 >
