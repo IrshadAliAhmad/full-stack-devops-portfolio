@@ -1,75 +1,3 @@
-/* @import "tailwindcss";
-@custom-variant dark (&:where(.dark, .dark *));
-
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Inter, sans-serif;
-  min-height: 100vh;
-
-}
-
-Custom Gradient
-.gradient-text {
-  background: linear-gradient(to right, #2563eb, #7c3aed);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-
-
-Circle Skill selider V1
-
-.grid-3d-circle {
-  transform-style: preserve-3d;
-  width: 105px;
-  height: 105px;
-  Now, rotation will be controlled directly via JavaScript using this variable
-  transform: rotateX(-5deg) rotateY(var(--total-rotation, 0deg));
-  will-change: transform;   For super-smooth performance on mobile
-}
-
-@media (min-width: 768px) {
-  .grid-3d-circle {
-    width: 145px;
-    height: 145px;
-  }
-}
-
-.skill-3d-card {
-  transform-style: preserve-3d;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
-  transition: box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
-}
-
-Hover Glowing Neon Magic
-.skill-3d-card:hover {
-  border-color: transparent !important;
-  box-shadow: 0 12px 35px -5px var(--hover-glow), 0 5px 15px var(--hover-glow);
-  background-color: rgb(255, 255, 255) !important;
-}
-
-.dark .skill-3d-card:hover {
-  background-color: rgb(39, 39, 42) !important;
-}
-
-.skill-3d-card .inner-content {
-  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.skill-3d-card:hover .inner-content {
-  transform: translateZ(15px); 
-} */
-
-
-
-
-
 
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
@@ -82,6 +10,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Inter, sans-serif;
+  box-sizing: border-box;
   min-height: 100vh;
 }
 
