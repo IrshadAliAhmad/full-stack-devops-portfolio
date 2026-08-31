@@ -1,13 +1,13 @@
 const authorize = (...roles) => {
   return (req, res, next) => {
-    console.log("User Role:", req.user.role);
-    console.log("Allowed Roles:", roles);
     if (!req.user) {
       return res.status(401).json({
         success: false,
         message: "Unauthorized",
       });
     }
+    console.log("User Role:", req.user.role);
+    console.log("Allowed Roles:", roles);
 
     const userRole = (req.user.role || "").toLowerCase();
     const allowedRoles = roles.map((role) => role.toLowerCase());
