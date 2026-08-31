@@ -18,6 +18,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(morgan("dev"));
+app.use("/api/messages", messageRoutes);
+app.use("/api/admin/messages", adminMessageRoutes);
 
 
 // Sirf ek baar /api prefix use karein
