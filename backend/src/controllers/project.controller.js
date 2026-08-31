@@ -1,16 +1,24 @@
+
 import asyncHandler from "../utils/asyncHandler.js";
 import ApiResponse from "../utils/ApiResponse.js";
 import ApiError from "../utils/ApiError.js";
+
 import {
   createProjectService,
   getAllProjectsService,
   getProjectBySlugService,
   updateProjectService,
+  archiveProjectService,
 } from "../services/project.service.js";
-import { archiveProjectService } from "../services/project.service.js";
+
+import { getIO } from "../config/socket.js";
 
 export const deleteProject = asyncHandler(async (req, res) => {
   const project = await archiveProjectService(req.params.id);
+
+  // Real-time event
+ const io = getIO();
+  io.emit("project:created", project);
 
   res
     .status(200)
@@ -42,13 +50,24 @@ export const getAllProjects = asyncHandler(async (req, res) => {
 export const createProject = asyncHandler(async (req, res) => {
   const project = await createProjectService(req.validatedData);
 
+  // Real-time event
+  const io = getIO();
+  io.emit("project:created", project);
+
   res
     .status(201)
     .json(new ApiResponse(201, "Project created successfully", project));
 });
 
 export const updateProject = asyncHandler(async (req, res) => {
-  const project = await updateProjectService(req.params.id, req.validatedData);
+  const project = await updateProjectService(
+    req.params.id,
+    req.validatedData
+  );
+
+  // Real-time event
+  const io = getIO();
+  io.emit("project:updated", project);
 
   res
     .status(200)
